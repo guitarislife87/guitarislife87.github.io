@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Personal Blog</title>
+    <link>/posts/</link>
+    <description>Recent content in Posts on Personal Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 31 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Starting a Blog</title>
+      <link>/posts/posts/starting-a-blog/</link>
+      <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/posts/starting-a-blog/</guid>
+      <description>&lt;h2 id=&#34;why&#34;&gt;Why&lt;/h2&gt;
+&lt;p&gt;Self Expression
+Encourage reflection
+Share learnings and ideas
+Have something to jog memories&lt;/p&gt;
+&lt;h2 id=&#34;adaptations&#34;&gt;Adaptations&lt;/h2&gt;
+&lt;h3 id=&#34;tool-installations&#34;&gt;Tool Installations&lt;/h3&gt;
+&lt;p&gt;I have the habit of using version managers from work, so instead of installing go directly, I install it from &lt;a href=&#34;https://github.com/asdf-vm/asdf&#34;&gt;asdf&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf install golang 1.23.3
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I also added &lt;code&gt;golang 1.23.3&lt;/code&gt; to my &lt;code&gt;$HOME/.tool-versions&lt;/code&gt; file.
+I spent way too long debugging that Hugo was out of date, and switched to 0.140.2 with asdf instead of the apt package&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf plugin add hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf install hugo 0.140.2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;different-theme-changes&#34;&gt;Different Theme Changes&lt;/h3&gt;
+&lt;h4 id=&#34;sass&#34;&gt;Sass&lt;/h4&gt;
+&lt;p&gt;Needed to install dart-sass for theme. I didn&amp;rsquo;t want to edit my &lt;code&gt;$PATH&lt;/code&gt;, so I went for the npm route &lt;code&gt;npm install -g sass&lt;/code&gt;.
+Hugo still complained about sass execute permissions, so I added it &lt;code&gt;chmod +rx &amp;lt;node install&amp;gt;/bin/sass&lt;/code&gt;
+That still didn&amp;rsquo;t work, so I installed &lt;a href=&#34;https://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; for Linux to install it.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install sass/sass/sass
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;postcss&#34;&gt;PostCSS&lt;/h4&gt;
+&lt;p&gt;Had to follow &lt;a href=&#34;https://gohugo.io/functions/css/postcss/&#34;&gt;these instructions&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;add-a-gitignore&#34;&gt;Add a .gitignore&lt;/h3&gt;
+&lt;p&gt;I don&amp;rsquo;t like committing generated items, especially if they&amp;rsquo;re going to be uploaded elsewhere.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public/
+resources/_gen/
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;hosting-on-github-pageshttpspagesgithubcom-instead-of-hostinger&#34;&gt;Hosting on &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt; instead of Hostinger&lt;/h3&gt;
+&lt;h3 id=&#34;convert-the-public-folder-to-a-submodule&#34;&gt;Convert the public folder to a submodule&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/36386667/how-to-make-an-existing-directory-within-a-git-repository-a-git-submodule&#34;&gt;StackOverflow&lt;/a&gt;
+Create the github.io repository
+Delete the public folder (It&amp;rsquo;ll get regenerated)
+Add the GitHub Pages repo as a submodule&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule add git@github.com:&amp;lt;username&amp;gt;/&amp;lt;username&amp;gt;.github.io.git public
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;learnings&#34;&gt;Learnings&lt;/h2&gt;
+&lt;p&gt;Reiterating that NPM should not be used as a tool package manager when at all possible.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
