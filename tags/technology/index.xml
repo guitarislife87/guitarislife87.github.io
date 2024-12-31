@@ -13,41 +13,68 @@
       <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate>
       
       <guid>/posts/posts/starting-a-blog/</guid>
-      <description>&lt;h2 id=&#34;why&#34;&gt;Why&lt;/h2&gt;
-&lt;p&gt;Self Expression
-Encourage reflection
-Share learnings and ideas
-Have something to jog memories&lt;/p&gt;
-&lt;h2 id=&#34;adaptations&#34;&gt;Adaptations&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;why-start-a-blog&#34;&gt;Why Start a Blog?&lt;/h2&gt;
+&lt;p&gt;Self Expression - The best ways to get better at something are to A) practice and B) teach. Hopefully, this will be good practice at communicating in writing and solidify things I learn.&lt;/p&gt;
+&lt;p&gt;Encourage reflection - I admit that I&amp;rsquo;m a shiny chaser. Maybe that&amp;rsquo;s a Software Engineer thing, maybe it&amp;rsquo;s a Millennial thing, maybe something else. Reflection will lead to better choices about staying with something or a better next thing.&lt;/p&gt;
+&lt;p&gt;Have something to jog memories - There are some personal events going on in my life that remind me that memories make up a lot of who we are. Whether my brain removed a piece of information while compacting or something more serious, there will be a backup of at least part of what I&amp;rsquo;ve experienced and learned.&lt;/p&gt;
+&lt;p&gt;Share learnings and ideas - I think the things I work on in my spare time are cool and interesting. Surely, someone else thinks they are, too. Those readers can then bypass the things that I had to hammer out.&lt;/p&gt;
+&lt;h2 id=&#34;build&#34;&gt;Build&lt;/h2&gt;
+&lt;p&gt;The first few steps about Obsidian, Hugo, and some of GitHub were from &lt;a href=&#34;https://www.youtube.com/watch?v=dnE7c0ELEH8&#34;&gt;a tutorial by NetworkChuck&lt;/a&gt;. I decided to use GitHub Pages instead of Hostinger. I&amp;rsquo;ve listed the deviations from the tutorial below.&lt;/p&gt;
 &lt;h3 id=&#34;tool-installations&#34;&gt;Tool Installations&lt;/h3&gt;
-&lt;p&gt;I have the habit of using version managers from work, so instead of installing go directly, I install it from &lt;a href=&#34;https://github.com/asdf-vm/asdf&#34;&gt;asdf&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I have the habit of using version managers from work, so instead of installing go directly, I installed it from &lt;a href=&#34;https://github.com/asdf-vm/asdf&#34;&gt;asdf&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf install golang 1.23.3
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I also added &lt;code&gt;golang 1.23.3&lt;/code&gt; to my &lt;code&gt;$HOME/.tool-versions&lt;/code&gt; file.
 I spent way too long debugging that Hugo was out of date, and switched to 0.140.2 with asdf instead of the apt package&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf plugin add hugo
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asdf install hugo 0.140.2
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;different-theme-changes&#34;&gt;Different Theme Changes&lt;/h3&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;That requires as &lt;code&gt;hugo 0.140.2&lt;/code&gt; in the &lt;code&gt;$HOME/.tool-versions&lt;/code&gt; file as well.&lt;/p&gt;
+&lt;h3 id=&#34;different-theme-changes&#34;&gt;Different Theme Changes&lt;/h3&gt;
 &lt;h4 id=&#34;sass&#34;&gt;Sass&lt;/h4&gt;
-&lt;p&gt;Needed to install dart-sass for theme. I didn&amp;rsquo;t want to edit my &lt;code&gt;$PATH&lt;/code&gt;, so I went for the npm route &lt;code&gt;npm install -g sass&lt;/code&gt;.
-Hugo still complained about sass execute permissions, so I added it &lt;code&gt;chmod +rx &amp;lt;node install&amp;gt;/bin/sass&lt;/code&gt;
-That still didn&amp;rsquo;t work, so I installed &lt;a href=&#34;https://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; for Linux to install it.&lt;/p&gt;
+&lt;p&gt;I needed to install dart-sass for theme. I didn&amp;rsquo;t want to edit my &lt;code&gt;$PATH&lt;/code&gt;, so I went for the npm route &lt;code&gt;npm install -g sass&lt;/code&gt;. Hugo still complained about sass execute permissions, so I added it &lt;code&gt;chmod +rx &amp;lt;node install&amp;gt;/bin/sass&lt;/code&gt;. That still didn&amp;rsquo;t work, so I installed &lt;a href=&#34;https://brew.sh/&#34;&gt;Homebrew&lt;/a&gt; for Linux to install sass. That finally worked.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install sass/sass/sass
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;postcss&#34;&gt;PostCSS&lt;/h4&gt;
-&lt;p&gt;Had to follow &lt;a href=&#34;https://gohugo.io/functions/css/postcss/&#34;&gt;these instructions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I followed follow &lt;a href=&#34;https://gohugo.io/functions/css/postcss/&#34;&gt;these instructions&lt;/a&gt; to install postCSS. I was hesitant about using npm again, but this tutorial worked.&lt;/p&gt;
 &lt;h3 id=&#34;add-a-gitignore&#34;&gt;Add a .gitignore&lt;/h3&gt;
-&lt;p&gt;I don&amp;rsquo;t like committing generated items, especially if they&amp;rsquo;re going to be uploaded elsewhere.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t like committing generated items, especially if they&amp;rsquo;re going to be uploaded elsewhere. I&amp;rsquo;d eventually have to remove &lt;code&gt;public/&lt;/code&gt; for the GitHub Pages submodule.&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;public/
 resources/_gen/
 &lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;hosting-on-github-pageshttpspagesgithubcom-instead-of-hostinger&#34;&gt;Hosting on &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt; instead of Hostinger&lt;/h3&gt;
-&lt;h3 id=&#34;convert-the-public-folder-to-a-submodule&#34;&gt;Convert the public folder to a submodule&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;https://stackoverflow.com/questions/36386667/how-to-make-an-existing-directory-within-a-git-repository-a-git-submodule&#34;&gt;StackOverflow&lt;/a&gt;
-Create the github.io repository
-Delete the public folder (It&amp;rsquo;ll get regenerated)
-Add the GitHub Pages repo as a submodule&lt;/p&gt;
+&lt;h4 id=&#34;convert-the-public-folder-to-a-submodule&#34;&gt;Convert the public folder to a submodule&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Create the github.io repository&lt;/li&gt;
+&lt;li&gt;Delete the public folder (It&amp;rsquo;ll get regenerated)&lt;/li&gt;
+&lt;li&gt;Add the GitHub Pages repo as a submodule&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule add git@github.com:&amp;lt;username&amp;gt;/&amp;lt;username&amp;gt;.github.io.git public
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;learnings&#34;&gt;Learnings&lt;/h2&gt;
-&lt;p&gt;Reiterating that NPM should not be used as a tool package manager when at all possible.&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;create-a-publish-script&#34;&gt;Create a publish script&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rsync -av --delete ~/&amp;lt;obsidian vault&amp;gt;/posts ~/&amp;lt;hugo repo&amp;gt;/content/posts
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd public
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd ../
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;python3 images.py &lt;span style=&#34;color:#75715e&#34;&gt;# NetworkChucks original script to pull in images&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd public
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git add --all
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git commit -m &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Automated Commit from Script&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git push origin main
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;configure-the-github-repo&#34;&gt;Configure the GitHub Repo&lt;/h4&gt;
+&lt;p&gt;After the first commit, configure the custom domain and TLS under Settings &amp;gt; Pages in GitHub&lt;/p&gt;
+&lt;h2 id=&#34;learnings&#34;&gt;Learnings&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;NPM should not be used as a tool package manager when at all possible. Try to use something like Homebrew or asdf instead.&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
