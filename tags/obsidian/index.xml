@@ -9,12 +9,12 @@
     <lastBuildDate>Thu, 02 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/obsidian/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Obsidian Second Brain</title>
-      <link>/posts/posts/obsidian-second-brain/</link>
+      <link>/posts/obsidian-second-brain/</link>
       <pubDate>Thu, 02 Jan 2025 00:00:00 +0000</pubDate>
       
-      <guid>/posts/posts/obsidian-second-brain/</guid>
+      <guid>/posts/obsidian-second-brain/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve wanted to start up a second brain for a while and decided to with a combination of PARA and Zettelkasten that &lt;a href=&#34;https://www.youtube.com/watch?v=rAkerV8rlow&#34;&gt;a YouTuber name CyanVoxel created&lt;/a&gt; as my organizational system. PARA (or Projects, Areas, Resources, and Archive) covers a creative and task based activities while Zettelkasten works better for information synthesis. The two have overlap in the Resources section which I think of as external information sources. Here&amp;rsquo;s how I&amp;rsquo;ve laid out so far:
-![[Second Brain Organization.png]]
+!&lt;img src=&#34;/images/Second%20Brain%20Organization.png&#34; alt=&#34;Image Description&#34;&gt;
 There are a few things that I might change. When starting the blog, I thought it fit better under the Permanent synthesized notes of Zettelkasten. It would be the only exposed to the public. I could see it ending up under Areas as an ongoing project. I don&amp;rsquo;t like having Resources broken down by source, so I&amp;rsquo;ll restructure that as pull in different modes of information. In the end, there&amp;rsquo;s no right answer besides what feels best. That&amp;rsquo;s the double edged sword of combining some systems.&lt;/p&gt;
 &lt;p&gt;Other things work well. Having a folder per project and a page per task works well with Obsidian&amp;rsquo;s &lt;a href=&#34;https://github.com/marcusolsson/obsidian-projects&#34;&gt;Projects community plugin&lt;/a&gt;. Frontmatter gives me the flexibility to query and aggregate structured information without having to fill in entries for every single page. Finally, having notes in Markdown and being synced to a GitHub repository is convenient for accessing information even if I don&amp;rsquo;t have Obsidian on a device, say a phone or work computer.&lt;/p&gt;
 </description>
@@ -22,10 +22,10 @@ There are a few things that I might change. When starting the blog, I thought it
     
     <item>
       <title>Starting a Blog</title>
-      <link>/posts/posts/starting-a-blog/</link>
+      <link>/posts/starting-a-blog/</link>
       <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate>
       
-      <guid>/posts/posts/starting-a-blog/</guid>
+      <guid>/posts/starting-a-blog/</guid>
       <description>&lt;h2 id=&#34;why-start-a-blog&#34;&gt;Why Start a Blog?&lt;/h2&gt;
 &lt;p&gt;Self Expression - The best ways to get better at something are to A) practice and B) teach. Hopefully, this will be good practice at communicating in writing and solidify things I learn.&lt;/p&gt;
 &lt;p&gt;Encourage reflection - I admit that I&amp;rsquo;m a shiny chaser. Maybe that&amp;rsquo;s a Software Engineer thing, maybe it&amp;rsquo;s a Millennial thing, maybe something else. Reflection will lead to better choices about staying with something or a better next thing.&lt;/p&gt;
