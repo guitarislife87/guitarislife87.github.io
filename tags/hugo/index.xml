@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Technology on Personal Blog</title>
-    <link>/tags/technology/</link>
-    <description>Recent content in Technology on Personal Blog</description>
+    <title>Hugo on Personal Blog</title>
+    <link>/tags/hugo/</link>
+    <description>Recent content in Hugo on Personal Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/technology/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Obsidian Second Brain</title>
-      <link>/posts/posts/obsidian-second-brain/</link>
-      <pubDate>Thu, 02 Jan 2025 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/posts/obsidian-second-brain/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve wanted to start up a second brain for a while and decided to with a combination of PARA and Zettelkasten that &lt;a href=&#34;https://www.youtube.com/watch?v=rAkerV8rlow&#34;&gt;a YouTuber name CyanVoxel created&lt;/a&gt; as my organizational system. PARA (or Projects, Areas, Resources, and Archive) covers a creative and task based activities while Zettelkasten works better for information synthesis. The two have overlap in the Resources section which I think of as external information sources. Here&amp;rsquo;s how I&amp;rsquo;ve laid out so far:
-![[Second Brain Organization.png]]
-There are a few things that I might change. When starting the blog, I thought it fit better under the Permanent synthesized notes of Zettelkasten. It would be the only exposed to the public. I could see it ending up under Areas as an ongoing project. I don&amp;rsquo;t like having Resources broken down by source, so I&amp;rsquo;ll restructure that as pull in different modes of information. In the end, there&amp;rsquo;s no right answer besides what feels best. That&amp;rsquo;s the double edged sword of combining some systems.&lt;/p&gt;
-&lt;p&gt;Other things work well. Having a folder per project and a page per task works well with Obsidian&amp;rsquo;s &lt;a href=&#34;https://github.com/marcusolsson/obsidian-projects&#34;&gt;Projects community plugin&lt;/a&gt;. Frontmatter gives me the flexibility to query and aggregate structured information without having to fill in entries for every single page. Finally, having notes in Markdown and being synced to a GitHub repository is convenient for accessing information even if I don&amp;rsquo;t have Obsidian on a device, say a phone or work computer.&lt;/p&gt;
-</description>
-    </item>
-    
+    <lastBuildDate>Tue, 31 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Starting a Blog</title>
       <link>/posts/posts/starting-a-blog/</link>
