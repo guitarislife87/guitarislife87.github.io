@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Technology on Personal Blog</title>
+    <title>Technology on The Mastering Jack</title>
     <link>/tags/technology/</link>
-    <description>Recent content in Technology on Personal Blog</description>
+    <description>Recent content in Technology on The Mastering Jack</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 06 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/technology/index.xml" rel="self" type="application/rss+xml" />
@@ -90,10 +90,10 @@ let data = {
 
 window.renderChart(data, this.container);
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Combing all those query together gave me this page, which had some display issues. Data on dashboards should be seen at a glance and not having to scroll.
-!&lt;img src=&#34;/images/Habit%20Tracking%201.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
+![[Habit Tracking 1.png]]&lt;/p&gt;
 &lt;h2 id=&#34;fixing-the-width-to-see-everything&#34;&gt;Fixing the Width To See Everything&lt;/h2&gt;
 &lt;p&gt;Following &lt;a href=&#34;https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772&#34;&gt;this post&lt;/a&gt;, I added some css classes to Obsidian. When I added the &lt;code&gt;page-100&lt;/code&gt; value in the cssclasses frontmatter field, the width of the document goes to the full width of the tab. 4 progress bars now have almost too much room on an HD monitor.&lt;/p&gt;
-&lt;p&gt;!&lt;img src=&#34;/images/Habit%20Tracking%20Wide.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
+&lt;p&gt;![[Habit Tracking Wide.png]]&lt;/p&gt;
 &lt;h2 id=&#34;wrap-up&#34;&gt;Wrap Up&lt;/h2&gt;
 &lt;p&gt;Hopefully, this will be an easy system to input my progress and see where I stand. If I create the daily note in the morning, I&amp;rsquo;m able to make a commit in GitHub to update the frontmatter through out the day on my phone. Maybe my eyes are bigger than my stomach on this New Year&amp;rsquo;s resolution plate, but at least I can see and remember what I&amp;rsquo;m eating.&lt;/p&gt;
 </description>
@@ -106,7 +106,7 @@ window.renderChart(data, this.container);
       
       <guid>/posts/obsidian-second-brain/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve wanted to start up a second brain for a while and decided to with a combination of PARA and Zettelkasten that &lt;a href=&#34;https://www.youtube.com/watch?v=rAkerV8rlow&#34;&gt;a YouTuber name CyanVoxel created&lt;/a&gt; as my organizational system. PARA (or Projects, Areas, Resources, and Archive) covers a creative and task based activities while Zettelkasten works better for information synthesis. The two have overlap in the Resources section which I think of as external information sources. Here&amp;rsquo;s how I&amp;rsquo;ve laid out so far:
-!&lt;img src=&#34;/images/Second%20Brain%20Organization.png&#34; alt=&#34;Image Description&#34;&gt;
+![[Second Brain Organization.png]]
 There are a few things that I might change. When starting the blog, I thought it fit better under the Permanent synthesized notes of Zettelkasten. It would be the only exposed to the public. I could see it ending up under Areas as an ongoing project. I don&amp;rsquo;t like having Resources broken down by source, so I&amp;rsquo;ll restructure that as pull in different modes of information. In the end, there&amp;rsquo;s no right answer besides what feels best. That&amp;rsquo;s the double edged sword of combining some systems.&lt;/p&gt;
 &lt;p&gt;Other things work well. Having a folder per project and a page per task works well with Obsidian&amp;rsquo;s &lt;a href=&#34;https://github.com/marcusolsson/obsidian-projects&#34;&gt;Projects community plugin&lt;/a&gt;. Frontmatter gives me the flexibility to query and aggregate structured information without having to fill in entries for every single page. Finally, having notes in Markdown and being synced to a GitHub repository is convenient for accessing information even if I don&amp;rsquo;t have Obsidian on a device, say a phone or work computer.&lt;/p&gt;
 </description>
