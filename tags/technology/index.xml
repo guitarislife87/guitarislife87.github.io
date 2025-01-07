@@ -13,21 +13,7 @@
       <pubDate>Mon, 06 Jan 2025 00:00:00 +0000</pubDate>
       
       <guid>/posts/obsidian-habit-tracking/</guid>
-      <description>&lt;p&gt;Habit Tracker&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Query Grouping changes + Flatten
-&lt;ul&gt;
-&lt;li&gt;kk and kkkk are the token for week year in luxon&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3&#34;&gt;https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Extra Obsidian Page Width
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772&#34;&gt;https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;the-goal&#34;&gt;The Goal&lt;/h2&gt;
+      <description>&lt;h2 id=&#34;the-goal&#34;&gt;The Goal&lt;/h2&gt;
 &lt;p&gt;For New Year&amp;rsquo;s resolutions, I&amp;rsquo;ve found that I can &amp;ldquo;get back on the wagon&amp;rdquo; better if my goals aren&amp;rsquo;t daily. Some days, there are more obligations, so I don&amp;rsquo;t need to make those hurdles for other goals.
 With that I create weekly goals that need progress aggregated from multiples days. For example, I task myself with exercising 150 hours a week. I also need to track the number of occurrences of an event (publishing blog posts that aren&amp;rsquo;t drafts) over a week. Finally, the good old weight watching doesn&amp;rsquo;t need to be grouped weekly but simply viewed over time.&lt;/p&gt;
 &lt;h2 id=&#34;pulling-the-data&#34;&gt;Pulling the Data&lt;/h2&gt;
