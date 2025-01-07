@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 105%">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  <meta name="author" content="">
+
+  
+  
+  <meta name="description" content="Habit Tracker
+
+Query Grouping changes &#43; Flatten
+
+kk and kkkk are the token for week year in luxon
+https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3
+
+
+Extra Obsidian Page Width
+
+https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772
+
+
+
+The Goal
+For New Year&rsquo;s resolutions, I&rsquo;ve found that I can &ldquo;get back on the wagon&rdquo; better if my goals aren&rsquo;t daily. Some days, there are more obligations, so I don&rsquo;t need to make those hurdles for other goals.
+With that I create weekly goals that need progress aggregated from multiples days. For example, I task myself with exercising 150 hours a week. I also need to track the number of occurrences of an event (publishing blog posts that aren&rsquo;t drafts) over a week. Finally, the good old weight watching doesn&rsquo;t need to be grouped weekly but simply viewed over time.">
+  
+
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="//images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="//images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="//images/favicon-16x16.png">
+
+  
+  
+  <meta name="keywords" content='personal blog'>
+  
+
+  
+  
+  <link rel="stylesheet" href='/katex/katex.min.css'>
+<script defer defer src='/katex/katex.min.js'></script>
+<script defer src='/katex/contrib/auto-render.min.js'></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError : false
+        });
+    });
+</script>
+  
+
+  
+  
+
+  
+  <meta property="og:url" content="/posts/obsidian-habit-tracking/">
+  <meta property="og:site_name" content="Personal Blog">
+  <meta property="og:title" content="Obsidian Habit Tracking">
+  <meta property="og:description" content="Habit Tracker
+Query Grouping changes &#43; Flatten kk and kkkk are the token for week year in luxon https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3 Extra Obsidian Page Width https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772 The Goal For New Year’s resolutions, I’ve found that I can “get back on the wagon” better if my goals aren’t daily. Some days, there are more obligations, so I don’t need to make those hurdles for other goals. With that I create weekly goals that need progress aggregated from multiples days. For example, I task myself with exercising 150 hours a week. I also need to track the number of occurrences of an event (publishing blog posts that aren’t drafts) over a week. Finally, the good old weight watching doesn’t need to be grouped weekly but simply viewed over time.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-01-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-01-06T22:45:26-06:00">
+    <meta property="article:tag" content="Technology">
+    <meta property="article:tag" content="Obsidian">
+    <meta property="article:tag" content="Visualization">
+
+
+  
+  <link rel="canonical" href="/posts/obsidian-habit-tracking/">
+
+  
+  
+  
+  <meta itemprop="name" content="Obsidian Habit Tracking">
+  <meta itemprop="description" content="Habit Tracker
+Query Grouping changes &#43; Flatten kk and kkkk are the token for week year in luxon https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3 Extra Obsidian Page Width https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772 The Goal For New Year’s resolutions, I’ve found that I can “get back on the wagon” better if my goals aren’t daily. Some days, there are more obligations, so I don’t need to make those hurdles for other goals. With that I create weekly goals that need progress aggregated from multiples days. For example, I task myself with exercising 150 hours a week. I also need to track the number of occurrences of an event (publishing blog posts that aren’t drafts) over a week. Finally, the good old weight watching doesn’t need to be grouped weekly but simply viewed over time.">
+  <meta itemprop="datePublished" content="2025-01-06T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-01-06T22:45:26-06:00">
+  <meta itemprop="wordCount" content="865">
+  <meta itemprop="keywords" content="Technology,Obsidian,Visualization">
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/common.min.e562d763c6d0825495eb17de8b2c1d9800cf7c08db1c36accedf77a5fccfc4b9.css" integrity="sha256-5WLXY8bQglSV6xfeiywdmADPfAjbHDaszt93pfzPxLk=" crossorigin="anonymous">
+  
+
+  
+  
+    <link rel="stylesheet" href="/css/content.min.ba38eba94cb47fef9936258c42d11ff19fa9686a30b38e783773fe3f15eb44dc.css" integrity="sha256-ujjrqUy0f&#43;&#43;ZNiWMQtEf8Z&#43;paGows454N3P&#43;PxXrRNw=" crossorigin="anonymous">
+  
+
+  
+  
+  <title>Obsidian Habit Tracking - Personal Blog</title>
+  
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Obsidian Habit Tracking">
+  <meta name="twitter:description" content="Habit Tracker
+Query Grouping changes &#43; Flatten kk and kkkk are the token for week year in luxon https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3 Extra Obsidian Page Width https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772 The Goal For New Year’s resolutions, I’ve found that I can “get back on the wagon” better if my goals aren’t daily. Some days, there are more obligations, so I don’t need to make those hurdles for other goals. With that I create weekly goals that need progress aggregated from multiples days. For example, I task myself with exercising 150 hours a week. I also need to track the number of occurrences of an event (publishing blog posts that aren’t drafts) over a week. Finally, the good old weight watching doesn’t need to be grouped weekly but simply viewed over time.">
+
+
+  
+
+
+  <link rel="stylesheet" href="/css/single.min.be779f459ad7e3aaf8afd0f80c6a61ca6c50993f5f18512532100ac6d93f0fa9.css" integrity="sha256-vnefRZrX46r4r9D4DGphymxQmT9fGFElMhAKxtk/D6k=" crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="/css/single.min.78a121b7d7a160420f9daab0ea13add66c37b9c44f27bba07b27207e2b0975d2.css" integrity="sha256-eKEht9ehYEIPnaqw6hOt1mw3ucRPJ7ugeycgfisJddI=" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <div id="wrapper">
+    
+
+
+<header id="header">
+  <h1>
+    <a href="/">Personal Blog</a>
+    <button id="dark-mode-toggle" class="dark-mode-toggle" aria-label="Toggle theme">
+        <svg width="2rem" height="2rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 496">
+        <path fill="currentColor" d="M8,256C8,393,119,504,256,504S504,393,504,256,393,8,256,8,8,119,8,256ZM256,440V72a184,184,0,0,1,0,368Z" transform="translate(-8 -8)"/>
+        </svg>
+    </button>
+  </h1>
+
+  <nav>
+    
+    <span class="nav-bar-item">
+      
+        <span class="icon"><svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17,11H16a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm0,4H16a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2ZM11,9h6a1,1,0,0,0,0-2H11a1,1,0,0,0,0,2ZM21,3H7A1,1,0,0,0,6,4V7H3A1,1,0,0,0,2,8V18a3,3,0,0,0,3,3H18a4,4,0,0,0,4-4V4A1,1,0,0,0,21,3ZM6,18a1,1,0,0,1-2,0V9H6Zm14-1a2,2,0,0,1-2,2H7.82A3,3,0,0,0,8,18V5H20Zm-9-4h1a1,1,0,0,0,0-2H11a1,1,0,0,0,0,2Zm0,4h1a1,1,0,0,0,0-2H11a1,1,0,0,0,0,2Z"/></svg>
+</span>
+      
+      <a class="link" href="/posts/">Blog</a>
+    </span>
+    
+    <span class="nav-bar-item">
+      
+        <span class="icon"><svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.88,16.88a3,3,0,0,0,0,4.24,3,3,0,0,0,4.24,0,3,3,0,0,0-4.24-4.24Zm2.83,2.83a1,1,0,0,1-1.42-1.42,1,1,0,0,1,1.42,0A1,1,0,0,1,5.71,19.71ZM5,12a1,1,0,0,0,0,2,5,5,0,0,1,5,5,1,1,0,0,0,2,0,7,7,0,0,0-7-7ZM5,8a1,1,0,0,0,0,2,9,9,0,0,1,9,9,1,1,0,0,0,2,0,11.08,11.08,0,0,0-3.22-7.78A11.08,11.08,0,0,0,5,8Zm10.61.39A15.11,15.11,0,0,0,5,4,1,1,0,0,0,5,6,13,13,0,0,1,18,19a1,1,0,0,0,2,0A15.11,15.11,0,0,0,15.61,8.39Z"/></svg>
+</span>
+      
+      <a class="link" href="/index.xml">RSS</a>
+    </span>
+    
+    <span class="nav-bar-item">
+      
+        <span class="icon"><svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1">
+<path d="M10.07031,20.50291a1.00008,1.00008,0,0,0-1.18115-.9834c-1.30908.24024-2.96191.27637-3.40137-.958a5.70754,5.70754,0,0,0-1.83691-2.415,1.20073,1.20073,0,0,1-.1665-.10938,1,1,0,0,0-.93067-.64551H2.54883a.99965.99965,0,0,0-1,.99512c-.00391.81543.811,1.33789,1.1416,1.51465a4.4408,4.4408,0,0,1,.92383,1.35937c.36426,1.02344,1.42285,2.57617,4.46582,2.376.001.03516.00195.06836.00244.09863l.00439.26758a1,1,0,0,0,2,0l-.00488-.31836C10.07715,21.4951,10.07031,21.22068,10.07031,20.50291Zm10.667-15.126c.03174-.125.063-.26367.09034-.41992a6.27792,6.27792,0,0,0-.40821-3.293,1.002,1.002,0,0,0-.61572-.58007c-.356-.12012-1.67041-.35645-4.18408,1.25a13.86918,13.86918,0,0,0-6.354,0C6.76221.751,5.45459.9658,5.10205,1.07908a.99744.99744,0,0,0-.63135.584,6.3003,6.3003,0,0,0-.40332,3.35644c.02442.12793.05078.2461.07813.35449A6.26928,6.26928,0,0,0,2.89014,9.20311a8.42168,8.42168,0,0,0,.04248.92187c.334,4.60254,3.334,5.98438,5.42431,6.459-.04345.125-.083.25878-.11816.40039a1.00023,1.00023,0,0,0,1.94238.47851,1.6784,1.6784,0,0,1,.46778-.87793.99947.99947,0,0,0-.5459-1.74512c-3.4541-.39453-4.95362-1.80175-5.1792-4.89843a6.61076,6.61076,0,0,1-.03369-.73828,4.25769,4.25769,0,0,1,.91943-2.71289,3.022,3.022,0,0,1,.1958-.23145.99988.99988,0,0,0,.188-1.02441,3.3876,3.3876,0,0,1-.15527-.55567A4.09356,4.09356,0,0,1,6.1167,3.06346a7.54263,7.54263,0,0,1,2.415,1.17968,1.00877,1.00877,0,0,0,.82764.13282,11.77716,11.77716,0,0,1,6.17285.001,1.00549,1.00549,0,0,0,.83056-.13769,7.572,7.572,0,0,1,2.40528-1.19043,4.03977,4.03977,0,0,1,.0874,1.57812,3.205,3.205,0,0,1-.16895.60743.9999.9999,0,0,0,.188,1.02441c.07715.08691.1543.18066.22363.26855A4.12186,4.12186,0,0,1,20,9.20311a7.03888,7.03888,0,0,1-.0376.77734c-.22021,3.05566-1.72558,4.46387-5.1958,4.85937a1,1,0,0,0-.54541,1.7461,1.63079,1.63079,0,0,1,.46631.9082,3.06079,3.06079,0,0,1,.09229.81934v2.334C14.77,21.2949,14.77,21.78025,14.77,22.00291a1,1,0,1,0,2,0c0-.2168,0-.69238.00977-1.33984V18.31346a4.8815,4.8815,0,0,0-.15479-1.31153,4.25638,4.25638,0,0,0-.11621-.416,6.51258,6.51258,0,0,0,5.44531-6.42383A8.69677,8.69677,0,0,0,22,9.20311,6.13062,6.13062,0,0,0,20.7373,5.37693Z"/></svg>
+</span>
+      
+      <a class="link" href="https://github.com/guitarislife87">GitHub</a>
+    </span>
+    
+  </nav>
+</header>
+<hr class="head-rule"></hr>
+    
+<main id="main" class="post">
+  
+  <div class="post-heading">
+    <h1 class="post-title">Obsidian Habit Tracking</h1>
+    <div class="publish-metadata">
+      
+      <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 9H21M7 3V5M17 3V5M6 13H8M6 17H8M11 13H13M11 17H13M16 13H18M16 17H18M6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      6 January 2025
+      
+      
+        &nbsp;
+        <span>
+          <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.4998 5.49994L18.3282 8.32837M3 20.9997L3.04745 20.6675C3.21536 19.4922 3.29932 18.9045 3.49029 18.3558C3.65975 17.8689 3.89124 17.4059 4.17906 16.9783C4.50341 16.4963 4.92319 16.0765 5.76274 15.237L17.4107 3.58896C18.1918 2.80791 19.4581 2.80791 20.2392 3.58896C21.0202 4.37001 21.0202 5.63634 20.2392 6.41739L8.37744 18.2791C7.61579 19.0408 7.23497 19.4216 6.8012 19.7244C6.41618 19.9932 6.00093 20.2159 5.56398 20.3879C5.07171 20.5817 4.54375 20.6882 3.48793 20.9012L3 20.9997Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          865 words
+        </span>
+      
+      
+      
+        
+      
+      
+        &nbsp;
+        <span>
+          <svg width="0.75em" height="0.75em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          ~5 mins
+        </span>
+      
+    </div>
+  </div>
+
+  
+  <div>
+    
+    <a class="link tag" href='/tags/technology'>#technology</a>
+    
+    <a class="link tag" href='/tags/obsidian'>#obsidian</a>
+    
+    <a class="link tag" href='/tags/visualization'>#visualization</a>
+    
+    <br></br>
+  </div>
+  
+  
+  
+  <details>
+    <summary>
+      <b>Table of Contents</b>
+    </summary>
+    <div class="toc numbered-subtitles"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-goal">The Goal</a></li>
+    <li><a href="#pulling-the-data">Pulling the Data</a>
+      <ul>
+        <li><a href="#habits-query">Habits Query</a></li>
+        <li><a href="#blog-query">Blog Query</a></li>
+        <li><a href="#weight-line-graph">Weight Line Graph</a></li>
+      </ul>
+    </li>
+    <li><a href="#fixing-the-width-to-see-everything">Fixing the Width To See Everything</a></li>
+    <li><a href="#wrap-up">Wrap Up</a></li>
+  </ul>
+</nav></div>
+  </details>
+  
+  
+  <article class="content numbered-subtitles">
+    
+    <p>Habit Tracker</p>
+<ul>
+<li>Query Grouping changes + Flatten
+<ul>
+<li>kk and kkkk are the token for week year in luxon</li>
+<li><a href="https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3">https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3</a></li>
+</ul>
+</li>
+<li>Extra Obsidian Page Width
+<ul>
+<li><a href="https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772">https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="the-goal">The Goal</h2>
+<p>For New Year&rsquo;s resolutions, I&rsquo;ve found that I can &ldquo;get back on the wagon&rdquo; better if my goals aren&rsquo;t daily. Some days, there are more obligations, so I don&rsquo;t need to make those hurdles for other goals.
+With that I create weekly goals that need progress aggregated from multiples days. For example, I task myself with exercising 150 hours a week. I also need to track the number of occurrences of an event (publishing blog posts that aren&rsquo;t drafts) over a week. Finally, the good old weight watching doesn&rsquo;t need to be grouped weekly but simply viewed over time.</p>
+<h2 id="pulling-the-data">Pulling the Data</h2>
+<p>For simple tracking, I started with putting properties in my daily notes&rsquo; frontmatter. They&rsquo;re prefixed with <code>habit.</code> in the hopes of preventing future collisions, but it doesn&rsquo;t affect the query. For tracking blog entries, I decided to track each blog entry&rsquo;s file with it&rsquo;s frontmatter date. That would require no extra information than what I needed for my publishing workflow.</p>
+<h3 id="habits-query">Habits Query</h3>
+<p>Obsidian&rsquo;s DataView query language may look like standard SQL, but it has some deviations. Aggregate values (i.e., those calculated from grouping) require to use the Non-SQL Flatten keyword after the grouping. For each FLATTEN, you can do an aggregate function (sum, count, etc) and declare a value like you would in the SELECT of a regular SQL query. Those values can then be used in the main projection part of the query to make further calculations. In this case, I generate the html for the progress bar with the value set.</p>
+<p>The final piece was how to group by week of the year. Using <code>YY-WW</code> as the format string yielded an entry for &ldquo;24-01&rdquo; which was a year ago. After looking at Luxon&rsquo;s documentation, one sees that <code>kk</code> is the 2 digit &ldquo;week year&rdquo; or the year corresponding to <code>WW</code>, the 2 digit week of year.</p>
+<pre tabindex="0"><code>TABLE WITHOUT ID
+	Week,
+	&#34;&lt;progress value=&#39;&#34; + ExerciseCalc + &#34;&#39; max=&#39;150&#39; /&gt;&#34; as &#34;Exercise (150)&#34;,
+	&#34;&lt;progress value=&#39;&#34; + ReadingCalc + &#34;&#39; max=&#39;150&#39; /&gt;&#34; as &#34;Reading (150)&#34;,
+	&#34;&lt;progress value=&#39;&#34; + MusicCalc + &#34;&#39; max=&#39;150&#39; /&gt;&#34; as &#34;Music (150)&#34;,
+	&#34;&lt;progress value=&#39;&#34; + OldNorseCalc + &#34;&#39; max=&#39;105&#39; /&gt;&#34; as &#34;Old Norse (105)&#34;
+FROM &#34;06 - Daily&#34;
+GROUP BY dateformat(date(file.name, &#34;yyyy-MM-dd&#34;), &#34;kk-WW&#34;) as Week
+FLATTEN sum(rows.file.frontmatter[&#34;habit.exercise&#34;]) as ExerciseCalc
+FLATTEN sum(rows.file.frontmatter[&#34;habit.reading&#34;]) as ReadingCalc
+FLATTEN sum(rows.file.frontmatter[&#34;habit.music&#34;]) as MusicCalc
+FLATTEN sum(rows.file.frontmatter[&#34;habit.old-norse&#34;]) as OldNorseCalc
+SORT Week ASC
+</code></pre><h3 id="blog-query">Blog Query</h3>
+<p>With all the information from the first query, it was simple to iterate through all my blog posts and count the number for each week that were not marked as drafts.</p>
+<pre tabindex="0"><code>TABLE WITHOUT ID
+	Week,
+	&#34;&lt;progress value=&#39;&#34; + BlogCalc + &#34;&#39; max=&#39;3&#39; /&gt;&#34; as &#34;Blogs (3)&#34;
+FROM &#34;04 - Permanent/Blog/posts&#34;
+GROUP BY dateformat(date(file.frontmatter[&#34;date&#34;]), &#34;kk-WW&#34;) as Week
+FLATTEN sum(choice(rows.file.frontmatter.draft = &#34;true&#34;, 0, 1)) as BlogCalc
+SORT Week ASC
+</code></pre><h3 id="weight-line-graph">Weight Line Graph</h3>
+<p>Line graphs require an additional Obsidian plugin that brings the Chart.js library into Obsidian. After a few examples, some back and forth with ChatGPT, and fighting to match the data structure in the Chart.js documentation (Give me some static times, please!), I finally had a graph from the value in my daily notes.</p>
+<pre tabindex="0"><code>// Note: changes to the plugin code is not reflected to the chart, because the plugin is loaded at chart construction time and editor changes only trigger an chart.update().
+const plugin = {
+  id: &#39;customCanvasBackgroundColor&#39;,
+  beforeDraw: (chart, args, options) =&gt; {
+    const {ctx} = chart;
+    ctx.save();
+    ctx.globalCompositeOperation = &#39;destination-over&#39;;
+    ctx.fillStyle = options.color || &#39;#ffffff&#39;;
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  }
+};
+
+// Get all pages in the &#34;06 - Daily&#34; folder with the &#34;habit.weight&#34; field in frontmatter
+const pages = dv.pages(&#39;&#34;06 - Daily&#34;&#39;) .where(p =&gt; p.file.frontmatter[&#34;habit.weight&#34;] &amp;&amp; p.file.frontmatter[&#34;habit.weight&#34;] !== 0) .sort(p =&gt; p.file.name).array();
+// Sort the pages by filename or date
+// Prepare data for Chart.js
+let labels = pages.map(p =&gt; p.file.name);
+// Use file names as the labels
+let weights = pages.map(p =&gt; p.file.frontmatter[&#34;habit.weight&#34;]);
+// Extract the habit.weight field
+// Chart.js data format
+
+let data = { 
+	type: &#39;line&#39;,
+	data: {
+		labels: labels,
+		datasets: [{ 
+			label: &#39;Weight&#39;,
+			data: weights,
+			backgroundColor: [&#39;#000000&#39;]
+		}]
+	},
+	options: {
+	    plugins: {
+	      customCanvasBackgroundColor: {
+	        color: &#39;white&#39;,
+	      }
+	    }
+  },
+  plugins: [plugin],
+};
+
+window.renderChart(data, this.container);
+</code></pre><p>Combing all those query together gave me this page, which had some display issues. Data on dashboards should be seen at a glance and not having to scroll.
+!<img src="/images/Habit%20Tracking%201.png" alt="Image Description"></p>
+<h2 id="fixing-the-width-to-see-everything">Fixing the Width To See Everything</h2>
+<p>Following (this post)[https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772], I added some additional css classes to Obsidian. When I added the <code>page-100</code> value in the cssclasses frontmatter field, the width of the document goes to the full width of the tab. 4 progress bars now have almost too much room on an HD monitor.</p>
+<p>!<img src="/images/Habit%20Tracking%20Wide.png" alt="Image Description"></p>
+<h2 id="wrap-up">Wrap Up</h2>
+<p>Hopefully, this will be an easy system to input my progress and see where I stand. If I create the daily note in the morning, I&rsquo;m able to make a commit in GitHub to update the frontmatter through out the day on my phone. Maybe my eyes are bigger than my stomach on this New Year&rsquo;s resolution plate, but at least I can see and remember what I&rsquo;m eating.</p>
+
+    
+  </article>
+
+  <button onclick="topFunction()" id="back-to-top" title="Go to top">Back to Top</button>
+
+  
+
+<div id="sharingbuttons">
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+</div>
+  <div class="paginator">
+    
+    <a class="link" href="/posts/obsidian-second-brain/" title="Obsidian Second Brain">← prev</a>
+    
+    
+    <a></a>
+    
+  </div>
+  <div class="comment">
+    
+    
+    
+    
+  </div>
+  
+  
+</main>
+
+    <footer id="footer">
+  <div>
+    <span>Powered by  <a class=link href=https://gohugo.io target=_blank rel=noopener>Hugo</a> | 
+Theme <a class=link href=https://github.com/michaelneuper/hugo-texify3 target=_blank rel=noopener>TeXify3</a>
+</span>
+  </div>
+  <div>
+    <span>Copyright © 2025 </span>
+  </div>
+</footer>
+
+  </div>
+
+  
+  <script src='/js/script.js' defer></script>
+
+  
+  
+
+  
+  
+
+  
+  
+
+</body>
+
+</html>

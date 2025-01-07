@@ -7,6 +7,112 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Obsidian Habit Tracking</title>
+      <link>/posts/obsidian-habit-tracking/</link>
+      <pubDate>Mon, 06 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/obsidian-habit-tracking/</guid>
+      <description>&lt;p&gt;Habit Tracker&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Query Grouping changes + Flatten
+&lt;ul&gt;
+&lt;li&gt;kk and kkkk are the token for week year in luxon&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3&#34;&gt;https://forum.obsidian.md/t/dataview-query-for-all-tasks-in-folder-with-custom-status/56076/3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Extra Obsidian Page Width
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772&#34;&gt;https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;the-goal&#34;&gt;The Goal&lt;/h2&gt;
+&lt;p&gt;For New Year&amp;rsquo;s resolutions, I&amp;rsquo;ve found that I can &amp;ldquo;get back on the wagon&amp;rdquo; better if my goals aren&amp;rsquo;t daily. Some days, there are more obligations, so I don&amp;rsquo;t need to make those hurdles for other goals.
+With that I create weekly goals that need progress aggregated from multiples days. For example, I task myself with exercising 150 hours a week. I also need to track the number of occurrences of an event (publishing blog posts that aren&amp;rsquo;t drafts) over a week. Finally, the good old weight watching doesn&amp;rsquo;t need to be grouped weekly but simply viewed over time.&lt;/p&gt;
+&lt;h2 id=&#34;pulling-the-data&#34;&gt;Pulling the Data&lt;/h2&gt;
+&lt;p&gt;For simple tracking, I started with putting properties in my daily notes&amp;rsquo; frontmatter. They&amp;rsquo;re prefixed with &lt;code&gt;habit.&lt;/code&gt; in the hopes of preventing future collisions, but it doesn&amp;rsquo;t affect the query. For tracking blog entries, I decided to track each blog entry&amp;rsquo;s file with it&amp;rsquo;s frontmatter date. That would require no extra information than what I needed for my publishing workflow.&lt;/p&gt;
+&lt;h3 id=&#34;habits-query&#34;&gt;Habits Query&lt;/h3&gt;
+&lt;p&gt;Obsidian&amp;rsquo;s DataView query language may look like standard SQL, but it has some deviations. Aggregate values (i.e., those calculated from grouping) require to use the Non-SQL Flatten keyword after the grouping. For each FLATTEN, you can do an aggregate function (sum, count, etc) and declare a value like you would in the SELECT of a regular SQL query. Those values can then be used in the main projection part of the query to make further calculations. In this case, I generate the html for the progress bar with the value set.&lt;/p&gt;
+&lt;p&gt;The final piece was how to group by week of the year. Using &lt;code&gt;YY-WW&lt;/code&gt; as the format string yielded an entry for &amp;ldquo;24-01&amp;rdquo; which was a year ago. After looking at Luxon&amp;rsquo;s documentation, one sees that &lt;code&gt;kk&lt;/code&gt; is the 2 digit &amp;ldquo;week year&amp;rdquo; or the year corresponding to &lt;code&gt;WW&lt;/code&gt;, the 2 digit week of year.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;TABLE WITHOUT ID
+	Week,
+	&amp;#34;&amp;lt;progress value=&amp;#39;&amp;#34; + ExerciseCalc + &amp;#34;&amp;#39; max=&amp;#39;150&amp;#39; /&amp;gt;&amp;#34; as &amp;#34;Exercise (150)&amp;#34;,
+	&amp;#34;&amp;lt;progress value=&amp;#39;&amp;#34; + ReadingCalc + &amp;#34;&amp;#39; max=&amp;#39;150&amp;#39; /&amp;gt;&amp;#34; as &amp;#34;Reading (150)&amp;#34;,
+	&amp;#34;&amp;lt;progress value=&amp;#39;&amp;#34; + MusicCalc + &amp;#34;&amp;#39; max=&amp;#39;150&amp;#39; /&amp;gt;&amp;#34; as &amp;#34;Music (150)&amp;#34;,
+	&amp;#34;&amp;lt;progress value=&amp;#39;&amp;#34; + OldNorseCalc + &amp;#34;&amp;#39; max=&amp;#39;105&amp;#39; /&amp;gt;&amp;#34; as &amp;#34;Old Norse (105)&amp;#34;
+FROM &amp;#34;06 - Daily&amp;#34;
+GROUP BY dateformat(date(file.name, &amp;#34;yyyy-MM-dd&amp;#34;), &amp;#34;kk-WW&amp;#34;) as Week
+FLATTEN sum(rows.file.frontmatter[&amp;#34;habit.exercise&amp;#34;]) as ExerciseCalc
+FLATTEN sum(rows.file.frontmatter[&amp;#34;habit.reading&amp;#34;]) as ReadingCalc
+FLATTEN sum(rows.file.frontmatter[&amp;#34;habit.music&amp;#34;]) as MusicCalc
+FLATTEN sum(rows.file.frontmatter[&amp;#34;habit.old-norse&amp;#34;]) as OldNorseCalc
+SORT Week ASC
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;blog-query&#34;&gt;Blog Query&lt;/h3&gt;
+&lt;p&gt;With all the information from the first query, it was simple to iterate through all my blog posts and count the number for each week that were not marked as drafts.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;TABLE WITHOUT ID
+	Week,
+	&amp;#34;&amp;lt;progress value=&amp;#39;&amp;#34; + BlogCalc + &amp;#34;&amp;#39; max=&amp;#39;3&amp;#39; /&amp;gt;&amp;#34; as &amp;#34;Blogs (3)&amp;#34;
+FROM &amp;#34;04 - Permanent/Blog/posts&amp;#34;
+GROUP BY dateformat(date(file.frontmatter[&amp;#34;date&amp;#34;]), &amp;#34;kk-WW&amp;#34;) as Week
+FLATTEN sum(choice(rows.file.frontmatter.draft = &amp;#34;true&amp;#34;, 0, 1)) as BlogCalc
+SORT Week ASC
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;weight-line-graph&#34;&gt;Weight Line Graph&lt;/h3&gt;
+&lt;p&gt;Line graphs require an additional Obsidian plugin that brings the Chart.js library into Obsidian. After a few examples, some back and forth with ChatGPT, and fighting to match the data structure in the Chart.js documentation (Give me some static times, please!), I finally had a graph from the value in my daily notes.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// Note: changes to the plugin code is not reflected to the chart, because the plugin is loaded at chart construction time and editor changes only trigger an chart.update().
+const plugin = {
+  id: &amp;#39;customCanvasBackgroundColor&amp;#39;,
+  beforeDraw: (chart, args, options) =&amp;gt; {
+    const {ctx} = chart;
+    ctx.save();
+    ctx.globalCompositeOperation = &amp;#39;destination-over&amp;#39;;
+    ctx.fillStyle = options.color || &amp;#39;#ffffff&amp;#39;;
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
+  }
+};
+
+// Get all pages in the &amp;#34;06 - Daily&amp;#34; folder with the &amp;#34;habit.weight&amp;#34; field in frontmatter
+const pages = dv.pages(&amp;#39;&amp;#34;06 - Daily&amp;#34;&amp;#39;) .where(p =&amp;gt; p.file.frontmatter[&amp;#34;habit.weight&amp;#34;] &amp;amp;&amp;amp; p.file.frontmatter[&amp;#34;habit.weight&amp;#34;] !== 0) .sort(p =&amp;gt; p.file.name).array();
+// Sort the pages by filename or date
+// Prepare data for Chart.js
+let labels = pages.map(p =&amp;gt; p.file.name);
+// Use file names as the labels
+let weights = pages.map(p =&amp;gt; p.file.frontmatter[&amp;#34;habit.weight&amp;#34;]);
+// Extract the habit.weight field
+// Chart.js data format
+
+let data = { 
+	type: &amp;#39;line&amp;#39;,
+	data: {
+		labels: labels,
+		datasets: [{ 
+			label: &amp;#39;Weight&amp;#39;,
+			data: weights,
+			backgroundColor: [&amp;#39;#000000&amp;#39;]
+		}]
+	},
+	options: {
+	    plugins: {
+	      customCanvasBackgroundColor: {
+	        color: &amp;#39;white&amp;#39;,
+	      }
+	    }
+  },
+  plugins: [plugin],
+};
+
+window.renderChart(data, this.container);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Combing all those query together gave me this page, which had some display issues. Data on dashboards should be seen at a glance and not having to scroll.
+!&lt;img src=&#34;/images/Habit%20Tracking%201.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;fixing-the-width-to-see-everything&#34;&gt;Fixing the Width To See Everything&lt;/h2&gt;
+&lt;p&gt;Following (this post)[https://forum.obsidian.md/t/how-to-set-dataview-table-width-to-100-and-nothing-else-trying-to-extract-the-code-from-minimal-theme-to-use-in-another-theme/88772], I added some additional css classes to Obsidian. When I added the &lt;code&gt;page-100&lt;/code&gt; value in the cssclasses frontmatter field, the width of the document goes to the full width of the tab. 4 progress bars now have almost too much room on an HD monitor.&lt;/p&gt;
+&lt;p&gt;!&lt;img src=&#34;/images/Habit%20Tracking%20Wide.png&#34; alt=&#34;Image Description&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;wrap-up&#34;&gt;Wrap Up&lt;/h2&gt;
+&lt;p&gt;Hopefully, this will be an easy system to input my progress and see where I stand. If I create the daily note in the morning, I&amp;rsquo;m able to make a commit in GitHub to update the frontmatter through out the day on my phone. Maybe my eyes are bigger than my stomach on this New Year&amp;rsquo;s resolution plate, but at least I can see and remember what I&amp;rsquo;m eating.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Obsidian Second Brain</title>
       <link>/posts/obsidian-second-brain/</link>
       <pubDate>Thu, 02 Jan 2025 00:00:00 +0000</pubDate>
