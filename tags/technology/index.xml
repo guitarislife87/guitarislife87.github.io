@@ -6,7 +6,26 @@
     <description>Recent content in Technology on The Mastering Jack</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 06 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/technology/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MacOS Sit-Stand Notifications</title>
+      <link>/posts/macos-sit-stand-notifications/</link>
+      <pubDate>Mon, 13 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/macos-sit-stand-notifications/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve had a sit/stand desks at home for a year. They been available at the office for more than six. However, I infrequently use the stand feature. My back may be hurting. The person who used it before me left it in a standing position. I&amp;rsquo;ll jump on the health train for a minute saying it&amp;rsquo;s good for me to forget it day later. My hypothesis is that I need to remove the thinking from my day and tell myself when to change positions.&lt;/p&gt;
+&lt;p&gt;My alert fatigued brain is already going, &amp;ldquo;Not another one!&amp;rdquo; So, I need to make this as fine tuned as I can. First, it must only appear on my work computer during the day. This rules out Slack which I also have a need (that I don&amp;rsquo;t heed enough) to mute from time to time. Since this is a work computer, I also wanted to limit yet another niche app from the internet. This lead me to using &lt;a href=&#34;https://support.apple.com/guide/automator/welcome/mac&#34;&gt;Automator&lt;/a&gt;. To run my custom app, I ended up using CronTab over the recommended LaunchD.&lt;/p&gt;
+&lt;h1 id=&#34;create-an-automator-app&#34;&gt;Create an Automator &amp;ldquo;App&amp;rdquo;&lt;/h1&gt;
+&lt;p&gt;Though I barely scratched the surface, Automater seems pretty capable of doing what it&amp;rsquo;s name implies: automating tasks and stringing them into workflows. The online documentation lacks library details, but it was pretty intuitive to create a new workflow, add a system notification action with a custom message, and save it as a MacOS app. Clicking on the final .app file immediately fires my notification to &amp;ldquo;Change Desk Position&amp;rdquo;.&lt;/p&gt;
+&lt;h1 id=&#34;set-up-crontab&#34;&gt;Set Up CronTab&lt;/h1&gt;
+&lt;p&gt;Yes, Apple recommends using LaunchD, but surprise, it doesn&amp;rsquo;t have the versatility without the verbosity of enumerating every notification time for a week. Maybe, someday, I&amp;rsquo;ll script the generation. CronTab has fewer steps to set up as well. But, this is a post about getting something functional, not perfect. To open the config file, type:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;crontab -e
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For this notification, I wanted pinged every hour from 9 to 4 on weekdays. That line looks like this in the&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0 9-16 * * 1-5 open ~/&amp;lt;Path to ICloud&amp;gt;/&amp;lt;Automator Folder&amp;gt;/&amp;lt;&amp;#34;App&amp;#34; Name&amp;gt;.app
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And that&amp;rsquo;s pretty much it. I did have to debug spaces in the path and using &lt;code&gt;open&lt;/code&gt; to keep the cron from treating the .app as the folder it really is behind the scenes. Now I&amp;rsquo;ve got a notification that will follow me to and from the office but not onto my personal devices. It&amp;rsquo;s only been one day so far, but there was a lot more standing.&lt;/p&gt;
+</description>
+    </item>
+    
     <item>
       <title>Obsidian Habit Tracking</title>
       <link>/posts/obsidian-habit-tracking/</link>
@@ -180,25 +199,6 @@ resources/_gen/
 &lt;ul&gt;
 &lt;li&gt;NPM should not be used as a tool package manager when at all possible. Try to use something like Homebrew or asdf instead.&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>MacOS Sit-Stand Notifications</title>
-      <link>/posts/macos-sit-stand-notifications/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/macos-sit-stand-notifications/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve had a sit/stand desks at home for a year. They been available at the office for more than six. However, I infrequently use the stand feature. My back may be hurting. The person who used it before me left it in a standing position. I&amp;rsquo;ll jump on the health train for a minute saying it&amp;rsquo;s good for me to forget it day later. My hypothesis is that I need to remove the thinking from my day and tell myself when to change positions.&lt;/p&gt;
-&lt;p&gt;My alert fatigued brain is already going, &amp;ldquo;Not another one!&amp;rdquo; So, I need to make this as fine tuned as I can. First, it must only appear on my work computer during the day. This rules out Slack which I also have a need (that I don&amp;rsquo;t heed enough) to mute from time to time. Since this is a work computer, I also wanted to limit yet another niche app from the internet. This lead me to using &lt;a href=&#34;https://support.apple.com/guide/automator/welcome/mac&#34;&gt;Automator&lt;/a&gt;. To run my custom app, I ended up using CronTab over the recommended LaunchD.&lt;/p&gt;
-&lt;h1 id=&#34;create-an-automator-app&#34;&gt;Create an Automator &amp;ldquo;App&amp;rdquo;&lt;/h1&gt;
-&lt;p&gt;Though I barely scratched the surface, Automater seems pretty capable of doing what it&amp;rsquo;s name implies: automating tasks and stringing them into workflows. The online documentation lacks library details, but it was pretty intuitive to create a new workflow, add a system notification action with a custom message, and save it as a MacOS app. Clicking on the final .app file immediately fires my notification to &amp;ldquo;Change Desk Position&amp;rdquo;.&lt;/p&gt;
-&lt;h1 id=&#34;set-up-crontab&#34;&gt;Set Up CronTab&lt;/h1&gt;
-&lt;p&gt;Yes, Apple recommends using LaunchD, but surprise, it doesn&amp;rsquo;t have the versatility without the verbosity of enumerating every notification time for a week. Maybe, someday, I&amp;rsquo;ll script the generation. CronTab has fewer steps to set up as well. But, this is a post about getting something functional, not perfect. To open the config file, type:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;crontab -e
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For this notification, I wanted pinged every hour from 9 to 4 on weekdays. That line looks like this in the&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;0 9-16 * * 1-5 open ~/&amp;lt;Path to ICloud&amp;gt;/&amp;lt;Automator Folder&amp;gt;/&amp;lt;&amp;#34;App&amp;#34; Name&amp;gt;.app
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;And that&amp;rsquo;s pretty much it. I did have to debug spaces in the path and using &lt;code&gt;open&lt;/code&gt; to keep the cron from treating the .app as the folder it really is behind the scenes. Now I&amp;rsquo;ve got a notification that will follow me to and from the office but not onto my personal devices. It&amp;rsquo;s only been one day so far, but there was a lot more standing.&lt;/p&gt;
 </description>
     </item>
     
